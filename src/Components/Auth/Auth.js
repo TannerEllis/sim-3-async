@@ -12,17 +12,12 @@ class Auth extends Component {
                             <img src={logo} alt="helo-logo" />
                         </div>
                     </div>
-                    <div style={{backgroundColor: 'pink'}}className='title-container'>
-                        <h1 style={{backgroundColor: 'rgba(000, 000, 000, .3'}}>Helo</h1>
+                    <div className='title-container'>
+                        <h1>Helo</h1>
                     </div>
-                    <div style={{backgroundColor: 'red'}} className='btn-container'>
-                        <button className='login-btn'>Login/Register</button>
-                        <p style={{fontSize: '12px'}}>test</p>
+                    <div className='btn-container'>
+                        <button className='login-btn'>Login / Register</button>
                     </div>
-                    {/* <div style={{ border: '1px solid blue' }}>
-                        <p style={{fontSize: '12px'}}>test</p>
-                        <button>test</button>
-                    </div> */}
                 </div>
             </div>
         );
