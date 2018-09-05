@@ -1,0 +1,63 @@
+
+
+.auth {
+    /* position: absolute; */
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(99deg, #ff70a6, #ff9770 40%, #ffd670 73%, #e9ff70);
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    /* font-size: 65px; */
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(128deg, rgba(64, 61, 57, 0.1), rgba(255, 255, 255, 0.2));
+    width: 400px;
+    height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25), 0 10px 10px 0 rgba(0, 0, 0, 0.26);
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 120px;
+    border: 1px solid black;
+}
+
+.helo-logo {
+    width: 119px;
+    height: 119px;
+    border: 1px solid blue;
+}
+
+.title-container {
+    width: 100%;
+    height: 80px;
+    padding-top: 10px;
+    border: 1px solid green;
+    text-align: center;
+    font-size: 65px
+}
+
+.btn-container {
+    width: 100%;
+    height: 40px;
+    border: 1px solid purple;
+    /* display: flex; */
+}
+
+.login-btn {
+    width: 200px;
+    height: 25px;
+    font-size: 20px;
+}
