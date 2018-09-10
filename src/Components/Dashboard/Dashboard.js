@@ -8,8 +8,22 @@ class Dashboard extends Component {
     constructor() {
         super()
         this.state = {
-            friendList: []
+            friendList: [],
+
         }
+    }
+
+    componentDidMount(){
+
+    }
+
+
+    handleDisplayList(){
+        this.setState({
+            image: this.state.image,
+            name: this.state.name,
+
+        })
     }
 
     render() {
