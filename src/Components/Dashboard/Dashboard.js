@@ -36,45 +36,45 @@ class Dashboard extends Component {
                         Logout
                     </div>
                 </div>
-              <div className='top-content'>
-                <div className='profile-content'>
-                <div className='image-container'></div>
-                <div className='edit-profile-container'>
-                <div className='profile-name-container'>James Lemire</div>
-                <div className='edit-btn-container'><button className='edit-profile-btn'>Edit Profile</button></div>
-                </div>
-                </div>
-                <div className='welcome-content'>
-                <div className='welcome-message'>
-                <p>Welcome to Helo! Find recommended friends based on your similarities, and even search for them by name.
+                <div className='top-content'>
+                    <div className='profile-content'>
+                        <div className='image-container'></div>
+                        <div className='edit-profile-container'>
+                            <div className='profile-name-container'>James Lemire</div>
+                            <div className='edit-btn-container'><button className='edit-profile-btn'>Edit Profile</button></div>
+                        </div>
+                    </div>
+                    <div className='welcome-content'>
+                        <div className='welcome-message'>
+                            <p>Welcome to Helo! Find recommended friends based on your similarities, and even search for them by name.
                      The more you update your profile, the better recommendations we can make!</p>
-                </div>
-                </div>
-              </div>
-              <div className='main-content'>
-                <div className='recommended-friends'>
-                <div className='main-title'>
-                <h2>Recommended Friends</h2>
-                </div>
-                <div className='main-sort'>
-                    <h4>Sorted by</h4>
-                    <div className='sort-input'>
-                    <select className='select-input'>
-                        <option value="firstName">First Name</option>
-                        <option value="lastName">Last Name</option>
-                        <option value="gender">Gender</option>
-                        <option value="hairColor">Hair Color</option>
-                        <option value="eyeColor">Eye Color</option>
-                        <option value="hobby">Hobby</option>
-                        <option value="birthdayDay">Birthday Day</option>
-                        <option value="birthdayMonth">Birthday Month</option>
-                        <option value="birthdayYear">Birthday Year</option>
-                    </select>
+                        </div>
                     </div>
                 </div>
-                <div className='no-recommendations' >No recommendations</div>
+                <div className='main-content-container'>
+                    <div className='main-content'>
+                        <div className='main-title'>
+                            <h2>Recommended Friends</h2>
+                        </div>
+                        <div className='main-sort'>
+                            <h4>Sorted by</h4>
+                            <div className='sort-input'>
+                                <select className='select-input'>
+                                    <option value="firstName">First Name</option>
+                                    <option value="lastName">Last Name</option>
+                                    <option value="gender">Gender</option>
+                                    <option value="hairColor">Hair Color</option>
+                                    <option value="eyeColor">Eye Color</option>
+                                    <option value="hobby">Hobby</option>
+                                    <option value="birthdayDay">Birthday Day</option>
+                                    <option value="birthdayMonth">Birthday Month</option>
+                                    <option value="birthdayYear">Birthday Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className='no-recommendations' >No recommendations</div>
+                    </div>
                 </div>
-              </div>
             </div>
         )
     }

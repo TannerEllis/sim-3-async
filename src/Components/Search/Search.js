@@ -36,6 +36,24 @@ class Search extends Component {
                         Logout
                     </div>
                 </div>
+                <div className='search-main-container'>
+                    <div className='search-main-content'>
+                        <div className='search-bar-container'>
+                            <div className='search-select'>
+                                <select className='search-selector' >
+                                    <option value="">First Name</option>
+                                </select>
+                            </div>
+                            <div className='search-bar'>
+                                <input className='search-input' type="search" />
+                            </div>
+                            <div className='search-btn-container'><button className='search-btn'>Search</button></div>
+                            <div className='reset-btn-container'><button className='reset-btn'>Reset</button></div>
+                        </div>
+                        <div className='search-list'></div>
+                    </div>
+                </div>
+
             </div>
         )
     }

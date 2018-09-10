@@ -3,3 +3,108 @@
     height: 100vh;
     background: #f2f2f2;
 }
+
+.search-main-container {
+    display: flex;
+    width: 100%;
+    height: 88%;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.search-main-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 55%;
+    margin-left: 5%;
+    height: 100%;
+    background: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    border: 1px solid red;
+}
+
+.search-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 120px;
+}
+
+.search-selector {
+    height: 25px;
+    width: 100px;
+    border-radius: 5px;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 165px;
+}
+
+.search-input {
+    height: 25px;
+    width: 90%;
+    border-radius: 3px;
+    border: 1px solid black;
+    opacity: .3;
+}
+
+.search-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100px;
+}
+
+.search-btn {
+    width: 100px;
+    height: 30px;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    border: none;
+    background-image: radial-gradient(circle at 50% -46%, #737373, #403d39);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+
+.reset-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100px;
+    margin-left: 10px;
+}
+
+.reset-btn {
+    width: 100px;
+    height: 30px;
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+    border-radius: 1px;
+    background: radial-gradient(circle at 50% 0, #ffffff, #f1eceb);
+    border: 1px solid #ccc3c3;
+}
+
+.search-list {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+    width: 100%;
+    height: 80%;
+    border: 1px solid blue;
+}

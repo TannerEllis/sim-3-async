@@ -3,3 +3,132 @@
     height: 100vh;
     background: #f2f2f2;
 }
+
+.profile-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    height: 170px;
+    width: 100%;
+}
+
+.profile-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 150px;
+    width: 55%;
+    margin-left: 5%;
+    background: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+
+}
+
+.profile-image {
+    width: 125px;
+    height: 125px;
+    border: 2px solid #ffcfbc;
+}
+
+.profile-name {
+    width: 125px;
+    height: 125px;
+    border: 2px solid red;
+}
+
+.profile-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 15px;
+    align-items: center;
+    width: 400px;
+    height: 125px; 
+}
+
+.update-btn-container {
+    margin-right: 5px;
+    
+}
+
+.cancel-btn-container {
+    margin-left: 5px;
+}
+
+.update-btn {
+    width: 100px;
+    height: 30px;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    border: none;
+    background-image: radial-gradient(circle at 50% -46%, #737373, #403d39);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+
+.cancel-btn {
+    width: 100px;
+    height: 30px;
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+    border-radius: 1px;
+    background: radial-gradient(circle at 50% 0, #ffffff, #f1eceb);
+    border: 1px solid #ccc3c3;
+}
+
+.profile-main-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    width: 55%;
+    margin-left: 5%;
+    height: 100%;
+    background: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+
+.main-left {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    align-items: center; 
+    border: 1px solid purple;
+    width: 48%;
+    height: 100%;
+    padding-top: 15px;
+}
+
+.main-right {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    align-items: center;
+    border: 1px solid purple;
+    width: 48%;
+    height: 100%;
+    padding-top: 15px;
+}
+
+.name-input {
+    height: 30px;
+    width: 50%;
+    font-size: 20px;
+    border-radius: 2px;
+    border: 1px solid black;
+    opacity: .2;
+    margin-bottom: 15px;
+}
+
+
+.selector {
+    width: 50%;
+    height: 30px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
