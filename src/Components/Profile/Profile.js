@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Profile.css';
 import homeLogo from '../../assets/home.png';
 import searchLogo from '../../assets/search.png'
@@ -8,7 +9,7 @@ class Profile extends Component {
     constructor() {
         super()
         this.state = {
-            friendList: []
+            user: []
         }
     }
 
@@ -23,17 +24,17 @@ class Profile extends Component {
                             <h3>Helo</h3>
                         </div>
                         <div className='home-logo'>
-                            <img src={homeLogo} alt="" />
+                            <Link to='/dashboard'><img src={homeLogo} alt="" /></Link>
                         </div>
                         <div className='search-logo'>
-                            <img src={searchLogo} alt="" />
+                            <Link to='/search'><img src={searchLogo} alt="" /></Link>
                         </div>
                     </div>
                     <div className='sub-nav-title'>
                         <h2>Profile</h2>
                     </div>
                     <div className='sub-nav-logout'>
-                        Logout
+                        <Link to='/'>Logout</Link>
                     </div>
                 </div>
                 <div className='profile-top'>

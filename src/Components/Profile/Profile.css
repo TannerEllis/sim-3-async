@@ -84,7 +84,7 @@
     justify-content: center;
     width: 55%;
     margin-left: 5%;
-    height: 100%;
+    min-height: 100%;
     background: #ffffff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
     border-radius: 2px;
@@ -96,7 +96,6 @@
     font-family: 'Open Sans', sans-serif;
     text-align: center;
     align-items: center; 
-    border: 1px solid purple;
     width: 48%;
     height: 100%;
     padding-top: 15px;
@@ -107,8 +106,7 @@
     flex-direction: column;
     font-family: 'Open Sans', sans-serif;
     text-align: center;
-    align-items: center;
-    border: 1px solid purple;
+    align-items: center; 
     width: 48%;
     height: 100%;
     padding-top: 15px;
@@ -118,7 +116,7 @@
     height: 30px;
     width: 50%;
     font-size: 20px;
-    border-radius: 2px;
+    border-radius: 2px; 
     border: 1px solid black;
     opacity: .2;
     margin-bottom: 15px;

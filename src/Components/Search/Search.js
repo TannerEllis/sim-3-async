@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Search.css';
 import homeLogo from '../../assets/home.png';
 import searchLogo from '../../assets/search.png'
@@ -8,7 +9,7 @@ class Search extends Component {
     constructor() {
         super()
         this.state = {
-            friendList: []
+            usersList: []
         }
     }
 
@@ -23,7 +24,7 @@ class Search extends Component {
                             <h3>Helo</h3>
                         </div>
                         <div className='home-logo'>
-                            <img src={homeLogo} alt="" />
+                            <Link to='/dashboard'><img src={homeLogo} alt="" /></Link>
                         </div>
                         <div className='search-logo'>
                             <img src={searchLogo} alt="" />
@@ -33,7 +34,7 @@ class Search extends Component {
                         <h2>Search</h2>
                     </div>
                     <div className='sub-nav-logout'>
-                        Logout
+                        <Link to='/'>Logout</Link>
                     </div>
                 </div>
                 <div className='search-main-container'>
