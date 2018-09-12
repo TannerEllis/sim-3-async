@@ -11,6 +11,7 @@ class Dashboard extends Component {
         super()
         this.state = {
             friendList: [],
+            addFriend: true
 
         }
 
@@ -105,7 +106,7 @@ class Dashboard extends Component {
                                 </select>
                             </div>
                         </div>
-                        <div className='no-recommendations' >No recommendations</div>
+                         <div className='no-recommendations' >No recommendations</div>
                         {friends}
                     </div>
                 </div>

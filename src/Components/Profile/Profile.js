@@ -9,8 +9,46 @@ class Profile extends Component {
     constructor() {
         super()
         this.state = {
-            user: []
+            user: [],
+            firstName: '',
+            lastName: '',
+            displayFirst: '',
+            displayLast: ''
         }
+
+        this.editFirstName = this.editFirstName.bind(this);
+        this.editLastName = this.editLastName.bind(this);
+        this.updateUser = this.updateUser.bind(this);
+        this.clearInfo = this.clearInfo.bind(this);
+
+    }
+
+
+
+    editFirstName(e) {
+        this.setState({
+            firstName: e.target.value
+        })
+    }
+
+    editLastName(e) {
+        this.setState({
+            lastName: e.target.value
+        })
+    }
+
+    updateUser() {
+        this.setState({
+            displayFirstName: this.state.firstName,
+            displayLastName: this.state.lastName
+        })
+    }
+
+    clearInfo() {
+        this.setState({
+            firstName: '',
+            lastName: ''
+        })
     }
 
     render() {
@@ -40,10 +78,14 @@ class Profile extends Component {
                 <div className='profile-top'>
                     <div className='profile-user'>
                         <div className='profile-image'></div>
-                        <div className='profile-name'></div>
+                        <div className='profile-name'>
+                            {this.state.displayFirstName}
+                            <br />
+                            {this.state.displayLastName}
+                        </div>
                         <div className='profile-btn-container'>
-                            <div className='update-btn-container'><button className='update-btn'>Update</button></div>
-                            <div className='cancel-btn-container'><button className='cancel-btn'>Cancel</button></div>
+                            <div className='update-btn-container'><button onClick={() => this.updateUser()} className='update-btn'>Update</button></div>
+                            <div className='cancel-btn-container'><button onClick={() => this.clearInfo()} className='cancel-btn'>Cancel</button></div>
                         </div>
                     </div>
                 </div>
@@ -51,14 +93,17 @@ class Profile extends Component {
                     <div className='profile-main-content'>
                         <div className='main-left'>
                             First Name
-                    <input className='name-input' type="text" />
+                    <input onChange={this.editFirstName} value={this.state.firstName} className='name-input' type="text" />
+                    
                             Last Name
-                    <input className='name-input' type="text" />
+                    <input onChange={this.editLastName} value={this.state.lastName} className='name-input' type="text" />
+
                             Gender
-                    <select className='selector'>
+                    <select className='selector' >
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>
+
                             Hair Color
                     <select className='selector'>
                                 <option value="black">Black</option>
@@ -68,6 +113,7 @@ class Profile extends Component {
                                 <option value="red">Red</option>
                                 <option value="other">Other</option>
                             </select>
+
                             Eye Color
                     <select className='selector'>
                                 <option value="blue">Blue</option>
@@ -78,68 +124,72 @@ class Profile extends Component {
                             </select>
                         </div>
                         <div className='main-right'>
+
                             Hobby
-                    <select className='selector'>
-                                <option value="">Video Games</option>
-                                <option value="">Singing</option>
-                                <option value="">Sports</option>
-                                <option value="">Reading</option>
-                                <option value="">Wood Working</option>
-                                <option value="">Sewing</option>
-                                <option value="">Dancing</option>
-                                <option value="">Shooting</option>
-                                <option value="">Hiking</option>
-                                <option value="">Painting</option>
+                    <select className='selector' value={this.state.user.hobby}>
+                                <option value="Video Games">Video Games</option>
+                                <option value="Singing">Singing</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Reading">Reading</option>
+                                <option value="Wood Working">Wood Working</option>
+                                <option value="Wood Working">Sewing</option>
+                                <option value="Dancing">Dancing</option>
+                                <option value="Shooting">Shooting</option>
+                                <option value="Hiking">Hiking</option>
+                                <option value="Painting">Painting</option>
                             </select>
+
                             Birthday Day
                             <select className='selector'>
-                                <option value="">01</option>
-                                <option value="">02</option>
-                                <option value="">03</option>
-                                <option value="">04</option>
-                                <option value="">05</option>
-                                <option value="">06</option>
-                                <option value="">07</option>
-                                <option value="">08</option>
-                                <option value="">09</option>
-                                <option value="">10</option>
-                                <option value="">11</option>
-                                <option value="">12</option>
-                                <option value="">13</option>
-                                <option value="">14</option>
-                                <option value="">15</option>
-                                <option value="">16</option>
-                                <option value="">17</option>
-                                <option value="">18</option>
-                                <option value="">19</option>
-                                <option value="">20</option>
-                                <option value="">21</option>
-                                <option value="">22</option>
-                                <option value="">23</option>
-                                <option value="">24</option>
-                                <option value="">25</option>
-                                <option value="">26</option>
-                                <option value="">27</option>
-                                <option value="">28</option>
-                                <option value="">29</option>
-                                <option value="">30</option>
-                                <option value="">31</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
                             </select>
+
                             Birthday Month
                             <select className='selector'>
-                                <option value="">January</option>
-                                <option value="">February</option>
-                                <option value="">March</option>
-                                <option value="">April</option>
-                                <option value="">May</option>
-                                <option value="">June</option>
-                                <option value="">July</option>
-                                <option value="">August</option>
-                                <option value="">September</option>
-                                <option value="">October</option>
-                                <option value="">November</option>
-                                <option value="">December</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
                             </select>
+
                             Birthday Year
                   <select className='selector'>
                                 <option value="1997">1997</option>
