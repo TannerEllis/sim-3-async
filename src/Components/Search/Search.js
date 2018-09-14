@@ -42,7 +42,15 @@ class Search extends Component {
                         <div className='search-bar-container'>
                             <div className='search-select'>
                                 <select className='search-selector' >
-                                    <option value="">First Name</option>
+                                <option value="first_name">First Name</option>
+                                    <option value="last_name">Last Name</option>
+                                    <option value="gender">Gender</option>
+                                    <option value="hair_color">Hair Color</option>
+                                    <option value="eye_olor">Eye Color</option>
+                                    <option value="hobby">Hobby</option>
+                                    <option value="birth_day">Birthday Day</option>
+                                    <option value="birth_month">Birthday Month</option>
+                                    <option value="birth_year">Birthday Year</option>
                                 </select>
                             </div>
                             <div className='search-bar'>

@@ -94,15 +94,15 @@ class Dashboard extends Component {
                             <h4>Sorted by</h4>
                             <div className='sort-input'>
                                 <select className='select-input'>
-                                    <option value="firstName">First Name</option>
-                                    <option value="lastName">Last Name</option>
+                                    <option value="first_name">First Name</option>
+                                    <option value="last_name">Last Name</option>
                                     <option value="gender">Gender</option>
-                                    <option value="hairColor">Hair Color</option>
-                                    <option value="eyeColor">Eye Color</option>
+                                    <option value="hair_color">Hair Color</option>
+                                    <option value="eye_olor">Eye Color</option>
                                     <option value="hobby">Hobby</option>
-                                    <option value="birthdayDay">Birthday Day</option>
-                                    <option value="birthdayMonth">Birthday Month</option>
-                                    <option value="birthdayYear">Birthday Year</option>
+                                    <option value="birth_day">Birthday Day</option>
+                                    <option value="birth_month">Birthday Month</option>
+                                    <option value="birth_year">Birthday Year</option>
                                 </select>
                             </div>
                         </div>

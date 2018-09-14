@@ -1,9 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const axios = require('axios');
 const massive = require('massive');
 const app = express();
 const controller = require('./controller');
-const sessions = require('express-session');
+const session = require('express-session');
 require('dotenv').config();
 
 massive(process.env.CONNECTION_STRING)
@@ -15,14 +16,72 @@ massive(process.env.CONNECTION_STRING)
 const port = 3012;
 
 app.use(bodyParser.json());
-app.use(sessions({
-    secret: 'supersecretsecret',
+
+const {
+  SERVER_PORT,
+  SESSION_SECRET,
+  REACT_APP_DOMAIN,
+  REACT_APP_CLIENT_ID,
+  CLIENT_SECRET
+} = process.env
+
+app.use(session({
+    secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
       maxAge: 60000000
     }
   }));
+
+
+  app.get('/auth/callback', async (req, res) => {
+    //code ---> req.query.code
+    let payload = {
+        client_id: REACT_APP_CLIENT_ID,
+        client_secret: CLIENT_SECRET,
+        code: req.query.code,
+        grant_type: 'authorization_code',
+        redirect_uri: `http://${req.headers.host}/auth/callback`
+    }
+
+    //post request with code for token
+    let tokenRes = await axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, payload)
+
+    // use token to get user data
+    let userRes = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${tokenRes.data.access_token}`)
+
+    const db = req.app.get('db');
+    const { name, sub } = userRes.data;
+
+    username = name.split(' ')
+    firstName = username[0] 
+    lastName = username[1]
+
+    let existingUser = await db.check_user([sub])
+
+    if (existingUser[0]) {
+        req.session.user = existingUser[0]
+    } else {
+        let createdUser = await db.create_user([sub, firstName, lastName])
+        
+        req.session.user = createdUser[0]
+    }
+    res.redirect('/#/dashboard');
+})
+
+app.get('/api/user-data', (req, res) => {
+  if (req.session.user) {
+      res.status(200).send(req.session.user)
+  } else {
+      res.status(401).send('User Must Login')
+  }
+})
+
+app.get('/logout', (req, res) => {
+  req.session.destroy()
+  res.redirect('http://localhost:3000/')
+})
 
 
 
@@ -40,4 +99,4 @@ app.use(sessions({
   // app.post('/api/recommended/add')
 
 
-  app.listen(port, () => console.log('Listening on port', port))
+  app.listen(port, () => console.log(`${port} Dragons flying overhead`))
