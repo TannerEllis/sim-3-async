@@ -13,7 +13,6 @@ massive(process.env.CONNECTION_STRING)
     app.set('db', db)
 }).catch(err => console.log(err))
 
-const port = 3012;
 
 app.use(bodyParser.json());
 
@@ -99,4 +98,4 @@ app.get('/logout', (req, res) => {
   // app.post('/api/recommended/add')
 
 
-  app.listen(port, () => console.log(`${port} Dragons flying overhead`))
+  app.listen(SERVER_PORT, () => console.log(`${SERVER_PORT} Dragons flying overhead`))
