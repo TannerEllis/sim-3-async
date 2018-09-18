@@ -1,6 +1,6 @@
 create table helo (
-	users_id INT,
-	auth_id VARCHAR(50),
+	users_id SERIAL,
+	auth_id TEXT,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
 	image VARCHAR(250),

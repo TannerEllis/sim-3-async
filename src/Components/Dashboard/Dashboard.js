@@ -10,32 +10,45 @@ class Dashboard extends Component {
     constructor() {
         super()
         this.state = {
+            currentUser: [],
             friendList: [],
             addFriend: true
 
         }
 
         this.handleDisplayList = this.handleDisplayList.bind(this);
+        this.handleDisplayUser = this.handleDisplayUser.bind(this);
 
     }
 
     componentDidMount() {
         this.handleDisplayList()
+        this.handleDisplayUser()
     }
 
     handleDisplayList() {
         axios.get('/api/friend/list')
-            .then((res) => {
+            .then((friends) => {
                 this.setState({
-                    friendList: res.data
+                    friendList: friends.data
                 })
             })
     }
 
+    handleDisplayUser(){
+        axios.get('/api/auth/setUser')
+        .then((user) => {
+            this.setState({
+                currentUser: user.data
+            })
+        })
+    }
+
 
     render() {
-        let friends = this.state.friendList.map((user, i) => {
-            return (<div key={i} className='user-card'>
+        const friends = this.state.friendList.map((user, i) => {
+            return (
+            <div key={i} className='user-card'>
                 <div className='user-image'>
                     <img src={user.image} alt="user" />
                 </div>
@@ -46,7 +59,8 @@ class Dashboard extends Component {
                 <div className='user-btn'>
                     <button className='add-friend'>Add Friend</button>
                 </div>
-            </div>)
+            </div>
+            )
         })
 
         return (
@@ -72,9 +86,15 @@ class Dashboard extends Component {
                 </div>
                 <div className='top-content'>
                     <div className='profile-content'>
-                        <div className='image-container'></div>
+                        <div className='image-container'>
+                            <img src={this.state.currentUser.image} alt=""/>
+                        </div>
                         <div className='edit-profile-container'>
-                            <div className='profile-name-container'>James Lemire</div>
+                            <div className='profile-name-container'>
+                            {this.state.currentUser.first_name} 
+                            <br/>
+                            {this.state.currentUser.last_name} 
+                            </div>
                             <div className='edit-btn-container'><button onClick={() => this.props.history.push('/profile')} className='edit-profile-btn'>Edit Profile</button></div>
                         </div>
                     </div>

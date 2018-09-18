@@ -153,9 +153,18 @@
 }
 
 .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     width: 40%;
     height: 80%;
-    border: 2px solid black;
+    border: 2px solid #ff7a6e;
+}
+
+.image-container>img {
+    height: 100px;
+    width: 100px;
+
 }
 
 .edit-profile-container {

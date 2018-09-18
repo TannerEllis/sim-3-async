@@ -27,9 +27,17 @@
 }
 
 .profile-image {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     width: 17%;
     height: 125px;
     border: 2px solid #ffcfbc;
+}
+
+.profile-image>img {
+    width: 110px;
+    height: 110px;
 }
 
 .profile-name {
@@ -40,7 +48,6 @@
     width: 17%;
     height: 125px;
     font-family: 'Open Sans', sans-serif;
-    border: 2px solid red;
 }
 
 .profile-btn-container {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './Profile.css';
 import homeLogo from '../../assets/home.png';
 import searchLogo from '../../assets/search.png'
@@ -9,18 +10,53 @@ class Profile extends Component {
     constructor() {
         super()
         this.state = {
-            user: [],
             firstName: '',
             lastName: '',
-            displayFirst: '',
-            displayLast: ''
+            gender: '',
+            hairColor: '',
+            eyeColor: '',
+            hobby: '',
+            birthDay: 1,
+            birthMonth: '',
+            birthYear: 1997
         }
 
         this.editFirstName = this.editFirstName.bind(this);
         this.editLastName = this.editLastName.bind(this);
+        this.editGender = this.editGender.bind(this);
+        this.editHairColor = this.editHairColor.bind(this);
+        this.editEyeColor = this.editEyeColor.bind(this);
+        this.editHobby = this.editHobby.bind(this);
+        this.editBirthDay = this.editBirthDay.bind(this);
+        this.editBirthMonth = this.editBirthMonth.bind(this);
+        this.editBirthYear = this.editBirthYear.bind(this);
         this.updateUser = this.updateUser.bind(this);
         this.clearInfo = this.clearInfo.bind(this);
+        this.handleDisplayUser = this.handleDisplayUser.bind(this);
 
+    }
+
+    componentDidMount() {
+        this.handleDisplayUser()
+
+    }
+
+    handleDisplayUser() {
+        axios.get('/api/auth/setUser')
+            .then((res) => {
+                this.setState({
+                    image: res.data.image,
+                    firstName: res.data.first_name,
+                    lastName: res.data.last_name,
+                    gender: res.data.gender,
+                    hairColor: res.data.hair_color,
+                    eyeColor: res.data.eye_color,
+                    hobby: res.data.hobby,
+                    birthDay: res.data.birth_day,
+                    birthMonth: res.data.birth_month,
+                    birthYear: res.data.birth_year
+                })
+            })
     }
 
 
@@ -37,17 +73,68 @@ class Profile extends Component {
         })
     }
 
-    updateUser() {
+    editGender(e) {
         this.setState({
-            displayFirstName: this.state.firstName,
-            displayLastName: this.state.lastName
+            gender: e.target.value
         })
+    }
+
+    editHairColor(e) {
+        this.setState({
+            hairColor: e.target.value
+        })
+    }
+
+    editEyeColor(e) {
+        this.setState({
+            eyeColor: e.target.value
+        })
+    }
+
+    editHobby(e) {
+        this.setState({
+            hobby: e.target.value
+        })
+    }
+
+    editBirthDay(e) {
+        this.setState({
+            birthDay: e.target.value
+        })
+    }
+
+    editBirthMonth(e) {
+        this.setState({
+            birthMonth: e.target.value
+        })
+    }
+
+    editBirthYear(e) {
+        this.setState({
+            birthYear: e.target.value
+        })
+    }
+
+
+    updateUser() {
+        let { firstName, lastName, gender, hairColor, eyeColor, hobby, birthDay, birthMonth, birthYear } = this.state
+        axios.patch(`/api/user/patch`, { firstName, lastName, gender, hairColor, eyeColor, hobby, birthDay, birthMonth, birthYear })
+            .then((res) => {
+            }).catch((err) => console.log(err))
+
     }
 
     clearInfo() {
         this.setState({
             firstName: '',
-            lastName: ''
+            lastName: '',
+            gender: '',
+            hairColor: '',
+            eyeColor: '',
+            hobby: '',
+            birthDay: 1,
+            birthMonth: '',
+            birthYear: 1997
         })
     }
 
@@ -77,11 +164,13 @@ class Profile extends Component {
                 </div>
                 <div className='profile-top'>
                     <div className='profile-user'>
-                        <div className='profile-image'></div>
+                        <div className='profile-image'>
+                            <img src={this.state.image} alt="" />
+                        </div>
                         <div className='profile-name'>
-                            {this.state.displayFirstName}
+                            {this.state.firstName}
                             <br />
-                            {this.state.displayLastName}
+                            {this.state.lastName}
                         </div>
                         <div className='profile-btn-container'>
                             <div className='update-btn-container'><button onClick={() => this.updateUser()} className='update-btn'>Update</button></div>
@@ -92,41 +181,42 @@ class Profile extends Component {
                 <div className='main-content-container'>
                     <div className='profile-main-content'>
                         <div className='main-left'>
+
                             First Name
                     <input onChange={this.editFirstName} value={this.state.firstName} className='name-input' type="text" />
-                    
+
                             Last Name
                     <input onChange={this.editLastName} value={this.state.lastName} className='name-input' type="text" />
 
                             Gender
-                    <select className='selector' >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                    <select onChange={this.editGender} value={this.state.gender} className='selector' >
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
 
                             Hair Color
-                    <select className='selector'>
-                                <option value="black">Black</option>
-                                <option value="blonde">Blonde</option>
-                                <option value="brown">Brown</option>
-                                <option value="gray">Gray</option>
-                                <option value="red">Red</option>
-                                <option value="other">Other</option>
+                    <select onChange={this.editHairColor} value={this.state.hairColor} className='selector'>
+                                <option value="Black">Black</option>
+                                <option value="Blonde">Blonde</option>
+                                <option value="Brown">Brown</option>
+                                <option value="Gray">Gray</option>
+                                <option value="Red">Red</option>
+                                <option value="Other">Other</option>
                             </select>
 
                             Eye Color
-                    <select className='selector'>
-                                <option value="blue">Blue</option>
-                                <option value="brown">Brown</option>
-                                <option value="green">Green</option>
-                                <option value="hazel">Hazel</option>
-                                <option value="red">Red</option>
+                    <select onChange={this.editEyeColor} value={this.state.eyeColor} className='selector'>
+                                <option value="Blue">Blue</option>
+                                <option value="Brown">Brown</option>
+                                <option value="Green">Green</option>
+                                <option value="Hazel">Hazel</option>
+                                <option value="Red">Red</option>
                             </select>
                         </div>
                         <div className='main-right'>
 
                             Hobby
-                    <select className='selector' value={this.state.user.hobby}>
+                    <select onChange={this.editHobby} className='selector' value={this.state.hobby}>
                                 <option value="Video Games">Video Games</option>
                                 <option value="Singing">Singing</option>
                                 <option value="Sports">Sports</option>
@@ -140,16 +230,16 @@ class Profile extends Component {
                             </select>
 
                             Birthday Day
-                            <select className='selector'>
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                                <option value="06">06</option>
-                                <option value="07">07</option>
-                                <option value="08">08</option>
-                                <option value="09">09</option>
+                            <select onChange={this.editBirthDay} value={this.state.birthDay} className='selector'>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
                                 <option value="10">10</option>
                                 <option value="11">11</option>
                                 <option value="12">12</option>
@@ -175,7 +265,7 @@ class Profile extends Component {
                             </select>
 
                             Birthday Month
-                            <select className='selector'>
+                            <select onChange={this.editBirthMonth} value={this.state.birthMonth} className='selector'>
                                 <option value="January">January</option>
                                 <option value="February">February</option>
                                 <option value="March">March</option>
@@ -191,7 +281,7 @@ class Profile extends Component {
                             </select>
 
                             Birthday Year
-                  <select className='selector'>
+                  <select onChange={this.editBirthYear} value={this.state.birthYear} className='selector'>
                                 <option value="1997">1997</option>
                                 <option value="1996">1996</option>
                                 <option value="1995">1995</option>

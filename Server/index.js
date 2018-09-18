@@ -57,6 +57,7 @@ app.use(session({
     firstName = username[0] 
     lastName = username[1]
 
+
     let existingUser = await db.check_user([sub])
 
     if (existingUser[0]) {
@@ -69,29 +70,30 @@ app.use(session({
     res.redirect('/#/dashboard');
 })
 
-app.get('/api/user-data', (req, res) => {
-  if (req.session.user) {
-      res.status(200).send(req.session.user)
-  } else {
-      res.status(401).send('User Must Login')
-  }
-})
+//   app.get('/api/auth/login')
 
-app.get('/logout', (req, res) => {
-  req.session.destroy()
-  res.redirect('http://localhost:3000/')
-})
+
+  app.get('/api/auth/setUser', controller.getCurrentUser)
 
 
 
-  // app.get('/api/auth/login')
-  // app.get('/api/auth/setUser')
-  // app.get('/api/auth/authenticated')
-  // app.post('/api/auth/logout')
+  app.get('/api/auth/authenticated', (req, res) => {
+    if (req.session.user) {
+        res.status(200).send(req.session.user)
+    } else {
+        res.status(401).send('User Must Login')
+    }
+  })
+
+  app.get('/api/auth/logout', (req, res) => {
+    req.session.destroy()
+    res.redirect('http://localhost:3000/')
+  })
+  
   app.get('/api/friend/list', controller.getUsers)
   // app.post('/api/friend/add')
   // app.post('/api/friend/remove')
-  // app.patch('/api/user/patch/:id')
+  app.patch('/api/user/patch', controller.updateUser)
   // app.get('/api/user/list')
   // app.get('/api/user/search')
   // app.post('/api/recommended')
