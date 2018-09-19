@@ -70,34 +70,28 @@ app.use(session({
     res.redirect('/#/dashboard');
 })
 
+
+
+
+// Authorization Endpoints
 //   app.get('/api/auth/login')
+app.get('/api/auth/setUser', controller.getCurrentUser)
+app.get('/api/auth/authenticated', controller.authorized)
+app.get('/api/auth/logout', controller.logout)
 
+// Friend Endpoints
+app.get('/api/friend/list', controller.getFriends)
+// app.post('/api/friend/add')
+// app.post('/api/friend/remove')
 
-  app.get('/api/auth/setUser', controller.getCurrentUser)
+//User Endpoints
+app.patch('/api/user/patch', controller.updateUser)
+// app.get('/api/user/list')
+// app.get('/api/user/search')
 
-
-
-  app.get('/api/auth/authenticated', (req, res) => {
-    if (req.session.user) {
-        res.status(200).send(req.session.user)
-    } else {
-        res.status(401).send('User Must Login')
-    }
-  })
-
-  app.get('/api/auth/logout', (req, res) => {
-    req.session.destroy()
-    res.redirect('http://localhost:3000/')
-  })
-  
-  app.get('/api/friend/list', controller.getUsers)
-  // app.post('/api/friend/add')
-  // app.post('/api/friend/remove')
-  app.patch('/api/user/patch', controller.updateUser)
-  // app.get('/api/user/list')
-  // app.get('/api/user/search')
-  // app.post('/api/recommended')
-  // app.post('/api/recommended/add')
+// Recommended Endpoints
+// app.post('/api/recommended')  
+// app.post('/api/recommended/add')
 
 
   app.listen(SERVER_PORT, () => console.log(`${SERVER_PORT} Dragons flying overhead`))

@@ -12,6 +12,8 @@ class Profile extends Component {
         this.state = {
             firstName: '',
             lastName: '',
+            displayFirstName: '',
+            displayLastName: '',
             gender: '',
             hairColor: '',
             eyeColor: '',
@@ -38,7 +40,6 @@ class Profile extends Component {
 
     componentDidMount() {
         this.handleDisplayUser()
-
     }
 
     handleDisplayUser() {
@@ -48,6 +49,8 @@ class Profile extends Component {
                     image: res.data.image,
                     firstName: res.data.first_name,
                     lastName: res.data.last_name,
+                    displayFirstName: res.data.first_name,
+                    displayLastName: res.data.last_name,
                     gender: res.data.gender,
                     hairColor: res.data.hair_color,
                     eyeColor: res.data.eye_color,
@@ -72,6 +75,19 @@ class Profile extends Component {
             lastName: e.target.value
         })
     }
+
+    displayFirstName(){
+        this.setState({
+            firstName: this.state.firstName
+        })
+    }
+
+    displayLastName(){
+        this.setState({
+            lastName: this.state.lastName
+        })
+    }
+
 
     editGender(e) {
         this.setState({
@@ -168,9 +184,9 @@ class Profile extends Component {
                             <img src={this.state.image} alt="" />
                         </div>
                         <div className='profile-name'>
-                            {this.state.firstName}
+                            {this.state.displayFirstName}
                             <br />
-                            {this.state.lastName}
+                            {this.state.displayLastName}
                         </div>
                         <div className='profile-btn-container'>
                             <div className='update-btn-container'><button onClick={() => this.updateUser()} className='update-btn'>Update</button></div>
