@@ -89,7 +89,7 @@ app.patch('/api/user/patch', controller.updateUser)
 // app.get('/api/user/list')
 // app.get('/api/user/search')
 
-// Recommended Endpoints
+// Recommended Friends
 // app.post('/api/recommended')  
 // app.post('/api/recommended/add')
 

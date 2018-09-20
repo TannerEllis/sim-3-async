@@ -1,5 +1,5 @@
 create table helo (
-	users_id SERIAL,
+	users_id SERIAL PRIMARY KEY,
 	auth_id TEXT,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
@@ -13,3 +13,9 @@ create table helo (
     birth_year INT
 );
 
+
+CREATE TABLE helo_friends (
+    id SERIAL PRIMARY KEY,
+    users_id INT REFERENCES helo(users_id),
+    friends_id INT REFERENCES helo(users_id)
+);

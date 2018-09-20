@@ -62,7 +62,6 @@ class Search extends Component {
                         <div className='search-list'></div>
                     </div>
                 </div>
-
             </div>
         )
     }

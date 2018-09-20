@@ -18,6 +18,7 @@ module.exports = {
 
         req.app.get('db').update_user([firstName, lastName, gender, hairColor, eyeColor, hobby, birthDay, birthMonth, birthYear, currentUser])
             .then((updatedInfo) => res.send(updatedInfo))
+
     },
 
     authorized: (req, res) => {

@@ -136,6 +136,7 @@ class Profile extends Component {
         let { firstName, lastName, gender, hairColor, eyeColor, hobby, birthDay, birthMonth, birthYear } = this.state
         axios.patch(`/api/user/patch`, { firstName, lastName, gender, hairColor, eyeColor, hobby, birthDay, birthMonth, birthYear })
             .then((res) => {
+                
             }).catch((err) => console.log(err))
 
     }
