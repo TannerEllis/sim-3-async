@@ -39,12 +39,14 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        this.handleDisplayUser()
+        this.handleDisplayUser() 
+        
     }
 
     handleDisplayUser() {
         axios.get('/api/auth/setUser')
             .then((res) => {
+                console.log(res.data)
                 this.setState({
                     image: res.data.image,
                     firstName: res.data.first_name,
@@ -136,7 +138,10 @@ class Profile extends Component {
         let { firstName, lastName, gender, hairColor, eyeColor, hobby, birthDay, birthMonth, birthYear } = this.state
         axios.patch(`/api/user/patch`, { firstName, lastName, gender, hairColor, eyeColor, hobby, birthDay, birthMonth, birthYear })
             .then((res) => {
-                
+                this.setState({
+                    displayFirstName: res.data.first_name,
+                    displayLastName: res.data.last_name,
+                })
             }).catch((err) => console.log(err))
 
     }

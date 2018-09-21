@@ -1,7 +1,13 @@
 module.exports = {
 
     getCurrentUser: (req, res) => {
-        res.send(req.session.user)
+        const currentUser = req.session.user.users_id
+        console.log(currentUser)
+        req.app.get('db').get_user([currentUser])
+        .then((user) => {
+            console.log(user)
+            res.status(200).send(user[0])})
+        .catch((err) => console.log(err))
     },
 
     getFriends: (req, res) => {
@@ -17,7 +23,9 @@ module.exports = {
         console.log(req.session.user)
 
         req.app.get('db').update_user([firstName, lastName, gender, hairColor, eyeColor, hobby, birthDay, birthMonth, birthYear, currentUser])
-            .then((updatedInfo) => res.send(updatedInfo))
+            .then((updatedInfo) => {
+                console.log(updatedInfo)
+                res.send(updatedInfo[0])})
 
     },
 
@@ -40,5 +48,12 @@ module.exports = {
 
         req.app.get('db').add_friend([friend, currentUser])
         .then((updatedList) => res.send(updatedList))
+      },
+
+      searchFriends: (req, res) => {
+        let currentUser = req.session.user.users_id
+
+        req.app.get('db').search_friends([currentUser])
+            .then((friendList) => res.send(friendList))
       }
 }

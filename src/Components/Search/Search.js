@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Search.css';
 import homeLogo from '../../assets/home.png';
@@ -11,10 +12,43 @@ class Search extends Component {
         this.state = {
             usersList: []
         }
+
+        this.displaySearchFriends = this.displaySearchFriends.bind(this);
+    }
+
+    componentDidMount(){
+        this.displaySearchFriends()
+    }
+
+    displaySearchFriends(){
+        axios.get('/api/user/search')
+        .then((friends) => {
+            this.setState({
+                usersList: friends.data
+            })
+        })
     }
 
     render() {
 
+        const searchFriends = this.state.usersList.map((user, i) => {
+            return (
+
+                
+            <div key={user + i} className='user-card'>
+                <div className='user-image'>
+                    <img src={user.image} alt="user" />
+                </div>
+                <div className='user-name'>
+                    <div className='user-first'>{user.first_name}</div>
+                    <div className='user-last'>{user.last_name}</div>
+                </div>
+                <div className='user-btn'>
+                    <button onClick={() => (this.handleAddFriend(user.users_id))} className='add-friend'>Add Friend</button>
+                </div>
+            </div>
+            )
+        })
 
         return (
             <div className='search'>
@@ -59,7 +93,9 @@ class Search extends Component {
                             <div className='search-btn-container'><button className='search-btn'>Search</button></div>
                             <div className='reset-btn-container'><button className='reset-btn'>Reset</button></div>
                         </div>
-                        <div className='search-list'></div>
+                        <div className='search-list'>
+                        {searchFriends}
+                        </div>
                     </div>
                 </div>
             </div>

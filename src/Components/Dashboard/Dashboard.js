@@ -38,6 +38,7 @@ class Dashboard extends Component {
     handleDisplayUser(){
         axios.get('/api/auth/setUser')
         .then((user) => {
+            console.log(user)
             this.setState({
                 currentUser: user.data
             })

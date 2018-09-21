@@ -87,7 +87,7 @@ app.post('/api/friend/add', controller.addFriend)
 //User Endpoints
 app.patch('/api/user/patch', controller.updateUser)
 // app.get('/api/user/list')
-// app.get('/api/user/search')
+app.get('/api/user/search', controller.searchFriends)
 
 // Recommended Friends
 // app.post('/api/recommended')  
