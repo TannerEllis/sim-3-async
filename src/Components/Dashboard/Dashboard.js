@@ -46,7 +46,11 @@ class Dashboard extends Component {
 
     handleAddFriend(friend){
         axios.post('/api/friend/add', {friend})
-        .then((res) => { console.log (res.data)})
+        .then((res) => { 
+            this.setState({
+                usersList: res.data
+            })
+        })
     }
     
 
@@ -54,6 +58,8 @@ class Dashboard extends Component {
     render() {
         const friends = this.state.usersList.map((user, i) => {
             return (
+
+                
             <div key={user + i} className='user-card'>
                 <div className='user-image'>
                     <img src={user.image} alt="user" />
@@ -131,9 +137,8 @@ class Dashboard extends Component {
                                     <option value="birth_year">Birthday Year</option>
                                 </select>
                             </div>
-                        </div>
-                         <div className='no-recommendations' >No recommendations</div>
-                        {friends}
+                        </div>    
+                        {this.state.usersList.length === 0 ? <div className='no-recommendations' >No recommendations</div> : friends}
                     </div>
                 </div>
             </div>
