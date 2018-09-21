@@ -11,13 +11,13 @@ class Dashboard extends Component {
         super()
         this.state = {
             currentUser: [],
-            friendList: [],
+            usersList: [],
             addFriend: true
-
         }
 
         this.handleDisplayList = this.handleDisplayList.bind(this);
         this.handleDisplayUser = this.handleDisplayUser.bind(this);
+        this.handleAddFriend = this.handleAddFriend.bind(this);
 
     }
 
@@ -30,7 +30,7 @@ class Dashboard extends Component {
         axios.get('/api/friend/list')
             .then((friends) => {
                 this.setState({
-                    friendList: friends.data
+                    usersList: friends.data
                 })
             })
     }
@@ -43,13 +43,18 @@ class Dashboard extends Component {
             })
         })
     }
+
+    handleAddFriend(friend){
+        axios.post('/api/friend/add', {friend})
+        .then((res) => { console.log (res.data)})
+    }
     
 
 
     render() {
-        const friends = this.state.friendList.map((user, i) => {
+        const friends = this.state.usersList.map((user, i) => {
             return (
-            <div key={i} className='user-card'>
+            <div key={user + i} className='user-card'>
                 <div className='user-image'>
                     <img src={user.image} alt="user" />
                 </div>
@@ -58,7 +63,7 @@ class Dashboard extends Component {
                     <div className='user-last'>{user.last_name}</div>
                 </div>
                 <div className='user-btn'>
-                    <button className='add-friend'>Add Friend</button>
+                    <button onClick={() => (this.handleAddFriend(user.users_id))} className='add-friend'>Add Friend</button>
                 </div>
             </div>
             )

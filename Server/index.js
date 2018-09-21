@@ -81,7 +81,7 @@ app.get('/api/auth/logout', controller.logout)
 
 // Friend Endpoints
 app.get('/api/friend/list', controller.getFriends)
-// app.post('/api/friend/add')
+app.post('/api/friend/add', controller.addFriend)
 // app.post('/api/friend/remove')
 
 //User Endpoints

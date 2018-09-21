@@ -32,5 +32,13 @@ module.exports = {
       logout: (req, res) => {
         req.session.destroy()
         res.redirect('http://localhost:3000/')
+      },
+
+      addFriend: (req, res) => {
+        let { friend } = req.body
+        let currentUser = req.session.user.users_id
+
+        req.app.get('db').add_friend([friend, currentUser])
+        .then((updatedList) => res.send(updatedList))
       }
 }
