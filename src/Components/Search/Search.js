@@ -10,10 +10,12 @@ class Search extends Component {
     constructor() {
         super()
         this.state = {
-            usersList: []
+            usersList: [],
         }
 
         this.displaySearchFriends = this.displaySearchFriends.bind(this);
+        this.handleAddFriend = this.handleAddFriend.bind(this);
+        this.handleRemoveFriend = this.handleRemoveFriend.bind(this);
     }
 
     componentDidMount(){
@@ -28,6 +30,28 @@ class Search extends Component {
             })
         })
     }
+
+    handleAddFriend(friend){
+        axios.post('/api/friend/add', {friend})
+        .then((res) => { 
+            this.setState({
+                usersList: res.data
+            })
+            this.componentDidMount()
+        })
+    }
+    
+    handleRemoveFriend(friend) {
+        axios.post('/api/friend/remove', {friend})
+        .then((res) => {
+            this.setState({
+                usersList: res.data
+            })
+            this.componentDidMount()
+        })
+    }
+
+
 
     render() {
 
@@ -44,7 +68,10 @@ class Search extends Component {
                     <div className='user-last'>{user.last_name}</div>
                 </div>
                 <div className='user-btn'>
-                    <button onClick={() => (this.handleAddFriend(user.users_id))} className='add-friend'>Add Friend</button>
+                { user.isFriend 
+                    ? <button onClick={ () => (this.handleRemoveFriend(user.users_id))} className='remove-friend'>Remove Friend</button> 
+                    : <button onClick={ () => (this.handleAddFriend(user.users_id))} className='add-friend'>Add Friend</button>}         
+                    
                 </div>
             </div>
             )

@@ -16,12 +16,15 @@ massive(process.env.CONNECTION_STRING)
 
 app.use(bodyParser.json());
 
+
+
 const {
   SERVER_PORT,
   SESSION_SECRET,
   REACT_APP_DOMAIN,
   REACT_APP_CLIENT_ID,
-  CLIENT_SECRET
+  CLIENT_SECRET,
+  ENVIRONMENT
 } = process.env
 
 app.use(session({
@@ -32,6 +35,17 @@ app.use(session({
       maxAge: 60000000
     }
   }));
+
+  app.use((req, res, next) => {
+    if (ENVIRONMENT === 'dev') {
+      req.app.get('db').set_data().then(userData => {
+        req.session.user = userData[0]
+        next();
+      })
+    } else {
+      next();
+    }
+   })
 
 
   app.get('/auth/callback', async (req, res) => {
@@ -82,12 +96,12 @@ app.get('/api/auth/logout', controller.logout)
 // Friend Endpoints
 app.get('/api/friend/list', controller.getFriends)
 app.post('/api/friend/add', controller.addFriend)
-// app.post('/api/friend/remove')
+app.post('/api/friend/remove', controller.removeFriend)
 
 //User Endpoints
 app.patch('/api/user/patch', controller.updateUser)
-// app.get('/api/user/list')
 app.get('/api/user/search', controller.searchFriends)
+// app.get('/api/user/list')
 
 // Recommended Friends
 // app.post('/api/recommended')  

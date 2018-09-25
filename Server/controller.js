@@ -26,7 +26,6 @@ module.exports = {
             .then((updatedInfo) => {
                 console.log(updatedInfo)
                 res.send(updatedInfo[0])})
-
     },
 
     authorized: (req, res) => {
@@ -48,12 +47,35 @@ module.exports = {
 
         req.app.get('db').add_friend([friend, currentUser])
         .then((updatedList) => res.send(updatedList))
+        
+      },
+
+      removeFriend: (req, res) => {
+          let { friend } = req.body
+          let currentUser = req.session.user.users_id
+
+          req.app.get('db').delete_friend([friend, currentUser])
+          .then((updatedList) => res.send(updatedList))
       },
 
       searchFriends: (req, res) => {
         let currentUser = req.session.user.users_id
 
-        req.app.get('db').search_friends([currentUser])
-            .then((friendList) => res.send(friendList))
+        req.app.get('db').get_all_users([currentUser])
+            .then(users => {
+                req.app.get('db').check_friend([currentUser])
+                .then(friends => {
+                    let allUsers = users.map(user => {
+                        friends.forEach(friend => {
+                            if(user.users_id === friend.friends_id) {
+                            user.isFriend = true
+                            }
+                        })
+                        return user
+                    })
+                    res.send(allUsers)
+                })
+            })
       }
 }
+
