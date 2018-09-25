@@ -11,6 +11,7 @@ class Search extends Component {
         super()
         this.state = {
             usersList: [],
+            filterList: []
         }
 
         this.displaySearchFriends = this.displaySearchFriends.bind(this);
