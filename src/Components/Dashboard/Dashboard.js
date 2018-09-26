@@ -12,12 +12,13 @@ class Dashboard extends Component {
         this.state = {
             currentUser: [],
             usersList: [],
-            addFriend: true
+            select: ''
         }
 
         this.handleDisplayList = this.handleDisplayList.bind(this);
         this.handleDisplayUser = this.handleDisplayUser.bind(this);
         this.handleAddFriend = this.handleAddFriend.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
 
     }
 
@@ -53,11 +54,22 @@ class Dashboard extends Component {
             })
         })
     }
-    
 
+    handleFilter(e){
+        this.setState({
+            select: e.target.value
+        })
+    }
 
     render() {
-        const friends = this.state.usersList.map((user, i) => {
+         
+        const friends = this.state.usersList.filter((user) => {
+            if(user[this.state.select] === this.state.currentUser[this.state.select]){
+                return true
+            } else {
+                return false
+            }
+        }).map((user, i) => {
             return (
 
                 
@@ -126,12 +138,12 @@ class Dashboard extends Component {
                         <div className='main-sort'>
                             <h4>Sorted by</h4>
                             <div className='sort-input'>
-                                <select className='select-input'>
+                                <select onChange={this.handleFilter} value={this.state.select} className='select-input'>
                                     <option value="first_name">First Name</option>
                                     <option value="last_name">Last Name</option>
                                     <option value="gender">Gender</option>
                                     <option value="hair_color">Hair Color</option>
-                                    <option value="eye_olor">Eye Color</option>
+                                    <option value="eye_color">Eye Color</option>
                                     <option value="hobby">Hobby</option>
                                     <option value="birth_day">Birthday Day</option>
                                     <option value="birth_month">Birthday Month</option>

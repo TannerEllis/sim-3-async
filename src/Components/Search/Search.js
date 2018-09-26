@@ -11,12 +11,14 @@ class Search extends Component {
         super()
         this.state = {
             usersList: [],
-            filterList: []
+            select: ''
         }
 
         this.displaySearchFriends = this.displaySearchFriends.bind(this);
         this.handleAddFriend = this.handleAddFriend.bind(this);
         this.handleRemoveFriend = this.handleRemoveFriend.bind(this);
+        this.handleSearchSelect = this.handleSearchSelect.bind(this);
+
     }
 
     componentDidMount(){
@@ -52,6 +54,17 @@ class Search extends Component {
         })
     }
 
+    handleSearchSelect(e){
+        this.setState({
+            select: e.target.value
+        })
+    }
+
+    handleReset(){
+        this.setState({
+            select: ''
+        })
+    }
 
 
     render() {
@@ -103,16 +116,9 @@ class Search extends Component {
                     <div className='search-main-content'>
                         <div className='search-bar-container'>
                             <div className='search-select'>
-                                <select className='search-selector' >
+                                <select onChange={this.handleSearchSelect} value={this.state.select} className='search-selector' >
                                 <option value="first_name">First Name</option>
                                     <option value="last_name">Last Name</option>
-                                    <option value="gender">Gender</option>
-                                    <option value="hair_color">Hair Color</option>
-                                    <option value="eye_olor">Eye Color</option>
-                                    <option value="hobby">Hobby</option>
-                                    <option value="birth_day">Birthday Day</option>
-                                    <option value="birth_month">Birthday Month</option>
-                                    <option value="birth_year">Birthday Year</option>
                                 </select>
                             </div>
                             <div className='search-bar'>

@@ -101,7 +101,7 @@ app.post('/api/friend/remove', controller.removeFriend)
 //User Endpoints
 app.patch('/api/user/patch', controller.updateUser)
 app.get('/api/user/search', controller.searchFriends)
-// app.get('/api/user/list')
+app.get('/api/user/list', controller.searchFriends)
 
 // Recommended Friends
 // app.post('/api/recommended')  
