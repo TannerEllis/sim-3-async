@@ -50,7 +50,7 @@ class Search extends Component {
             this.setState({
                 usersList: res.data
             })
-            this.componentDidMount()
+            this.displaySearchFriends();
         })
     }
     
@@ -60,7 +60,7 @@ class Search extends Component {
             this.setState({
                 usersList: res.data
             })
-            this.componentDidMount()
+            this.displaySearchFriends();
         })
     }
 
@@ -93,7 +93,7 @@ class Search extends Component {
     }
 
     handlePagination(page){
-        let offset = page * 8 - 8
+        let offset = page * 12 - 12
         axios.get(`/api/user/search/${offset}`)
         .then( (res) => {
             this.setState({
@@ -169,7 +169,7 @@ class Search extends Component {
                         </div>
                         <div className='search-list'>
                         {searchFriends}
-                        <Pagination onChange={this.handlePagination} pageSize={8} current={this.state.current} total={this.state.userCount} />
+                        <Pagination onChange={this.handlePagination} pageSize={12} current={this.state.current} total={this.state.userCount} />
                         </div>
                     </div>
                 </div>
