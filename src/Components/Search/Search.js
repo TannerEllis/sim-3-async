@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Pagination from 'rc-pagination';
+import 'rc-pagination/assets/index.css';
 import './Search.css';
 import homeLogo from '../../assets/home.png';
 import searchLogo from '../../assets/search.png'
@@ -11,22 +13,30 @@ class Search extends Component {
         super()
         this.state = {
             usersList: [],
-            select: ''
+            select: '',
+            input: '',
+            current: 1,
+            userCount: 0
         }
 
         this.displaySearchFriends = this.displaySearchFriends.bind(this);
         this.handleAddFriend = this.handleAddFriend.bind(this);
         this.handleRemoveFriend = this.handleRemoveFriend.bind(this);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
+        this.handleSearchInput = this.handleSearchInput.bind(this);
+        this.handleReset = this.handleReset.bind(this);
+        this.handlePagination = this.handlePagination.bind(this);
+        this.getUserCount = this.getUserCount.bind(this);
 
     }
 
     componentDidMount(){
         this.displaySearchFriends()
+        this.getUserCount();
     }
 
     displaySearchFriends(){
-        axios.get('/api/user/search')
+        axios.get('/api/user/search/0')
         .then((friends) => {
             this.setState({
                 usersList: friends.data
@@ -60,9 +70,38 @@ class Search extends Component {
         })
     }
 
+    handleSearchInput(e){
+        this.setState({
+            input: e.target.value
+        })
+    }
+
     handleReset(){
         this.setState({
-            select: ''
+            select: '',
+            input: ''
+        })
+    }
+
+    getUserCount(){
+        axios.get('/api/user/count')
+        .then((res) => {
+            this.setState({
+                userCount:Number(res.data[0].count) 
+            })
+        })
+    }
+
+    handlePagination(page){
+        let offset = page * 8 - 8
+        axios.get(`/api/user/search/${offset}`)
+        .then( (res) => {
+            this.setState({
+                usersList: res.data
+            })
+        })
+        this.setState({
+            current: page
         })
     }
 
@@ -88,6 +127,7 @@ class Search extends Component {
                     
                 </div>
             </div>
+            
             )
         })
 
@@ -122,13 +162,14 @@ class Search extends Component {
                                 </select>
                             </div>
                             <div className='search-bar'>
-                                <input className='search-input' type="search" />
+                                <input className='search-input' type="search" onChange={this.handleSearchInput} value={this.state.input}/>
                             </div>
                             <div className='search-btn-container'><button className='search-btn'>Search</button></div>
-                            <div className='reset-btn-container'><button className='reset-btn'>Reset</button></div>
+                            <div className='reset-btn-container'><button onClick={ ()=> {this.handleReset()}} className='reset-btn'>Reset</button></div>
                         </div>
                         <div className='search-list'>
                         {searchFriends}
+                        <Pagination onChange={this.handlePagination} pageSize={8} current={this.state.current} total={this.state.userCount} />
                         </div>
                     </div>
                 </div>

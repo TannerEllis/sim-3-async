@@ -60,8 +60,9 @@ module.exports = {
 
       searchFriends: (req, res) => {
         let currentUser = req.session.user.users_id
-
-        req.app.get('db').get_all_users([currentUser])
+        let page = req.params.page
+        console.log(page)
+        req.app.get('db').get_all_users([currentUser, page])
             .then(users => {
                 req.app.get('db').check_friend([currentUser])
                 .then(friends => {
@@ -76,6 +77,13 @@ module.exports = {
                     res.send(allUsers)
                 })
             })
+      },
+
+      countUsers: (req, res) => {
+        let currentUser = req.session.user.users_id
+
+        req.app.get('db').user_count([currentUser])
+        .then((count) => res.send(count))
       }
 }
 
