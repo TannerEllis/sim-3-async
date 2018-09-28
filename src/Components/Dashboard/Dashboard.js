@@ -61,8 +61,6 @@ class Dashboard extends Component {
         })
     }
 
-
-
     render() {
          
         const friends = this.state.usersList.filter((user) => {
@@ -141,6 +139,7 @@ class Dashboard extends Component {
                             <h4>Sorted by</h4>
                             <div className='sort-input'>
                                 <select onChange={this.handleFilter} value={this.state.select} className='select-input'>
+                                    <option value="select">Select</option>
                                     <option value="first_name">First Name</option>
                                     <option value="last_name">Last Name</option>
                                     <option value="gender">Gender</option>
